@@ -1,0 +1,7 @@
+$Password = Read-Host -AsSecureString
+Set-LocalUser -Name Administrator -Password $Password
+Enable-LocalUser -Name "Administrator"
+Set-TimeZone -Name "Central Standard Time"
+
+$Key = (Get-WmiObject -query 'select * from SoftwareLicensingService').OA3xOriginalProductKey
+slmgr.vbs -ipk $Key
